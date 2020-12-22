@@ -150,7 +150,6 @@ async def messages_resender(message: types.Message):
 
 
 if __name__ == '__main__':
-    executor.start_polling(dp, skip_updates=True, timeout=60)
-    run(host='localhost', port=8080, debug=True)
+    executor.start_polling(dp, skip_updates=True)
 
 
