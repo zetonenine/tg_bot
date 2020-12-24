@@ -1,0 +1,109 @@
+1. ГОТОВО - База данных с колонами:
+    -> chatID
+    -> Partner chatID со статусом по умолчанию Null
+        -> Status (поиска), по умолчанию False
+
+2. ГОТОВО - Логика функций
+    -> if user_id вызвал команду Find, сменить status на True
+    -> поиск:
+        Цикл по status == True,
+        с условием:
+            if user_id ≠ chatID,
+        то partner_chatID = chatID,
+        status = False
+
+        -> Добавить исключение, если юзер не находит собеседника.
+                либо: запустить команду еще раз,
+                        перепроверить список,
+
+
+
+    -> пересылка сообщения:
+        If partner_chatID ≠ Null
+        If message == voice
+        id = partner_chatID
+        resend_message to id
+
+    -> if user_id вызвал команду stop
+    -> прерывние чата:
+        id = partner_chatID
+        If command == /stop
+            partner_chatID = Null
+            status = False
+
+            chatID('id') partner_chatID = Null
+            # chatID('id') status = False
+    ->
+    ->
+
+2. ГОТОВО - Функция изменения Status на True/False
+3. ГОТОВО - Функция добавления chatID в колонку Partner сhatID
+4. ГОТОВО - Функция пересылки сообщения Partner chatID
+    -> Фильтр приёма только численных сообщений
+    -> Фильтр на приём только войсов
+
+
+5. Отформатировать кнопки команд /commands
+
+
+6. Установить вебхуки?
+
+
+7. Процесс чата теперь в FSM. Нужно только понять, как аккуранто оформить весь репозиторий
+
+
+
+8. Дооформить весь текст и отредактировать
+
+
+
+9. Пофиксить недочеты и провести тесты.
+        - Как долго два юзера смогут быть в чате без написания друг другу сообщения. Могут ли они переписываться в течении недели
+        - Нужно сохранять состояние юзера при перезагрузке бота. Пока два варианта либо БД либо что-то с этим может сделать redis
+
+
+10. Добавить название и адрес бота, аватарку.
+            Смешные названия к подключившимся юзерам, как в гугл таблицах.
+                    Либо добавлять эмодзи
+
+
+
+
+
+->  Users Journey Map:
+
+1. /start                                               Запустил бот
+    - send message                                          Попробовал отправить стороннее сообщение
+2. /help                                                Получил общую информацию бота
+
+3. /howto                                               Получил правила эффективности
+
+4. /find                                                Начал поиск собеседника
+    - send message                                          Попробовал отправить сообщение в чат
+5. chat was not found                                   Чат не был найден
+    - waiting for a chat                                    Ожидание чата
+6. chat was found                                       Чат был найден
+    - chat was stopped unexpectedly                         Чат внезапно прекратился
+7. send voice                                           Отправил голосовое
+
+8. get voice                                            Получил голосовое в ответ
+    - send text message or other types of messages          Попробоввал отправить другой тип сообщения
+9. /get                                                 Открыл шпаргалку
+
+10. /stop                                               Остановил чат
+    - Enjoy                                                 Доволен
+    - Not enjoy                                             Не доволен
+11. /find                                               Запустил новый чат
+
+
+
+
+
+
+
+
+{"message_id": 1124,
+"from": {"id": 379096786, "is_bot": false, "first_name": "Andrey", "last_name": "Zaytsev", "username": "zaytsv", "language_code": "ru"},
+"chat": {"id": 379096786, "first_name": "Andrey", "last_name": "Zaytsev", "username": "zaytsv", "type": "private"},
+"date": 1607698392,
+"voice": {"duration": 3, "mime_type": "audio/ogg", "file_id": "AwACAgIAAxkBAAIEZF_Th9giOngsWPeTl8VafJ5wijitAAL6BwACDrugSsjyg5Gsy9e_HgQ", "file_unique_id": "AgAD-gcAAg67oEo", "file_size": 22908}}
